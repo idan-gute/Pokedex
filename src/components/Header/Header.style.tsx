@@ -30,7 +30,7 @@ export const LinkStyled = styled(NavLink)`
   text-decoration: none;
   &.active {
     font-weight: 100;
-    flood-color:  #000000;
+    color:  #000000;
   }
 `;
 

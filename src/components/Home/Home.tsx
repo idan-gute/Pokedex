@@ -1,9 +1,7 @@
-import React from 'react'
+import PokemonList from "./PokemonList/PokemonList";
 
 const Home = () => {
-  return (
-    <div>Home</div>
-  )
-}
+  return <PokemonList />;
+};
 
-export default Home
+export default Home;
