@@ -2,6 +2,7 @@ import { useState } from "react";
 import { IPokemonDetails, PokemonListResponse } from "../../../Types";
 import { usePokemonList } from "../../../hooks/usePokemons";
 import Pokemon from "../Pokemon/Pokemon";
+import { ListWrapper, SearchInput } from "./PokemonList.style";
 
 const PokemonList = () => {
   const { data: pokemonListData, isLoading: isPokemonListLoading } =
@@ -20,18 +21,18 @@ const PokemonList = () => {
 
   return (
     <div>
-      <div>
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search by name or number..."
-        />
-      </div>
-      {!isPokemonListLoading &&
-        filteredPokemonList.map((pokemon: IPokemonDetails) => (
-          <Pokemon key={pokemon.url} name={pokemon.name} />
-        ))}
+      <SearchInput
+        type="text"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        placeholder="Search by name or number..."
+      />
+      <ListWrapper>
+        {!isPokemonListLoading &&
+          filteredPokemonList.map((pokemon: IPokemonDetails,idx) => (
+            <Pokemon key={pokemon.url} name={pokemon.name} index={idx} />
+          ))}
+      </ListWrapper>
     </div>
   );
 };

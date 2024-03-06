@@ -1,34 +1,56 @@
+import { formatPokemonNumber } from "../../../Utils";
 import RemoveFavorite from "../../../assets/styles/Icons/RemoveFavorite";
 import { usePokemonDetails } from "../../../hooks/usePokemons";
-import { LinkCardStyled } from "../Pokemon.style";
+import {
+  CardHeader,
+  CardWrapper,
+  ImgPokemon,
+  LinkCardStyled,
+} from "./Pokemon.style";
 interface PropsPokemon {
   name: string;
   isFavoritesPage?: boolean;
   handleRemoveFavorite?: (name: string) => void | undefined;
+  index: number;
 }
 
 const Pokemon = ({
   name,
   isFavoritesPage,
   handleRemoveFavorite,
+  index,
 }: PropsPokemon) => {
-
-  const { data: pokemonDetails, isLoading: isPokemonDetailsLoading } = usePokemonDetails(name);
+  const { data: pokemonDetails, isLoading: isPokemonDetailsLoading } =
+    usePokemonDetails(name);
 
   return (
-    <div>
+    <CardWrapper>
       {isPokemonDetailsLoading && <div>Loading...</div>}
-      {isFavoritesPage && !!handleRemoveFavorite && (
-        <RemoveFavorite onClick={() => handleRemoveFavorite(name)} />
-      )}
-      <LinkCardStyled key={pokemonDetails?.name} to={`/${pokemonDetails?.name}`}>
-        <img
-          src={pokemonDetails?.img}
-          alt={pokemonDetails?.name}
-        />
-        <p>{pokemonDetails?.name}</p>
+      <CardHeader>
+        <p>{formatPokemonNumber(index)}</p>
+        {isFavoritesPage && !!handleRemoveFavorite && (
+          <RemoveFavorite
+            style={{ cursor: "pointer" }}
+            onClick={() => handleRemoveFavorite(name)}
+          />
+        )}
+      </CardHeader>
+      <LinkCardStyled
+        key={pokemonDetails?.name}
+        to={`/${pokemonDetails?.name}`}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+          }}
+        >
+          <ImgPokemon src={pokemonDetails?.img} alt={pokemonDetails?.name} />
+          <p>{pokemonDetails?.name}</p>
+        </div>
       </LinkCardStyled>
-    </div>
+    </CardWrapper>
   );
 };
 

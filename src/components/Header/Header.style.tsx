@@ -6,7 +6,8 @@ export const HeaderWrapper = styled.div`
   width: 100%;
   height: 93px;
   background-color: #020166;
-  padding: 0 31px;
+  padding: 0 110px;
+  margin-bottom: 56px;
 `;
 
 export const NavBar = styled.nav`

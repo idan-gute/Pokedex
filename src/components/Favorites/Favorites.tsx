@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import Pokemon from "../Home/Pokemon/Pokemon";
 import { IPokemonDetails } from "../../Types";
+import { ListWrapper } from "../Home/PokemonList/PokemonList.style";
 
 const Favorites = () => {
   const [favoritePokemon,setFavoritepokemons] = useLocalStorage<IPokemonDetails[]>("favoritePokemon", []);
@@ -19,19 +20,16 @@ const Favorites = () => {
     setFavoritepokemons(updatedFavorites)
   };
 
-
   return (
-    <div>
-      {favorites.length === 0 ? (
+    <div style={{textAlign:'center'}}>
+      {favorites.length == 0 ? (
         <p>No favorite quotes yet.</p>
       ) : (
-        <div>
-          <div>
-            {favorites.map((pokemon: IPokemonDetails) => (
-              <Pokemon key={pokemon.url} name={pokemon.name} isFavoritesPage handleRemoveFavorite={handleRemoveFavorite} />
+        <ListWrapper>
+            {favorites.map((pokemon: IPokemonDetails,idx) => (
+              <Pokemon key={pokemon.url} name={pokemon.name} isFavoritesPage handleRemoveFavorite={handleRemoveFavorite} index={idx} />
             ))}
-          </div>
-        </div>
+        </ListWrapper>
       )}
     </div>
   );
