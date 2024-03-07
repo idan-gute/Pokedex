@@ -28,6 +28,7 @@ export type IChildren = {
     name: string;
     url: string;
     img: string;
+    id:number;
     stats: Stat[];
     types: IPokemonType[]; 
   };
