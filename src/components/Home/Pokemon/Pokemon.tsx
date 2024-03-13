@@ -11,14 +11,14 @@ interface PropsPokemon {
   name: string;
   isFavoritesPage?: boolean;
   handleRemoveFavorite?: (name: string) => void | undefined;
-  index: number;
+  id: number;
 }
 
 const Pokemon = ({
   name,
   isFavoritesPage,
   handleRemoveFavorite,
-  index,
+  id,
 }: PropsPokemon) => {
   const { data: pokemonDetails, isLoading: isPokemonDetailsLoading } =
     usePokemonDetails(name);
@@ -27,7 +27,7 @@ const Pokemon = ({
     <CardWrapper>
       {isPokemonDetailsLoading && <div>Loading...</div>}
       <CardHeader>
-        <p>{formatPokemonNumber(index)}</p>
+        <p>{formatPokemonNumber(id)}</p>
         {isFavoritesPage && !!handleRemoveFavorite && (
           <RemoveFavorite
             style={{ cursor: "pointer" }}

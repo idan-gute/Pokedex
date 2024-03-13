@@ -29,8 +29,8 @@ const PokemonList = () => {
       />
       <ListWrapper>
         {!isPokemonListLoading &&
-          filteredPokemonList.map((pokemon: IPokemonDetails,idx) => (
-            <Pokemon key={pokemon.url} name={pokemon.name} index={idx} />
+          filteredPokemonList.map((pokemon: IPokemonDetails,idx:number) => (
+            <Pokemon key={pokemon.url} name={pokemon.name} id={idx} />
           ))}
       </ListWrapper>
     </div>

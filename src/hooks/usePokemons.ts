@@ -21,6 +21,7 @@ const usePokemonDetails = (name: string) => {
       img: data?.sprites?.front_default,
       stats: data?.stats,
       types: data?.types,
+      id:data?.id
     };
 
     return modifiedData;

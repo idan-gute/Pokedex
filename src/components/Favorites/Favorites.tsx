@@ -26,8 +26,8 @@ const Favorites = () => {
         <p>No favorite quotes yet.</p>
       ) : (
         <ListWrapper>
-            {favorites.map((pokemon: IPokemonDetails,idx) => (
-              <Pokemon key={pokemon.url} name={pokemon.name} isFavoritesPage handleRemoveFavorite={handleRemoveFavorite} index={idx} />
+            {favorites.map((pokemon: IPokemonDetails) => (
+              <Pokemon key={pokemon.url} name={pokemon.name} isFavoritesPage handleRemoveFavorite={handleRemoveFavorite} id={pokemon.id} />
             ))}
         </ListWrapper>
       )}
